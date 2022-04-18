@@ -8,12 +8,12 @@ server.port = 8081
 #spring.datasource.password = root
 
 #host
-spring.data.mongodb.host= symbiote-mongo
+#spring.data.mongodb.host= localhost
 # default 27107
 spring.data.mongodb.port=27017
 # connection URL
 #spring.data.mongodb.uri=jdbc:mongodb://localhost/
-rap.mongo.host = symbiote-mongo
+rap.mongo.host = localhost
 rap.mongo.dbname = resources_db
 
 # use this flags to enable/disable northbound interfaces
@@ -21,24 +21,23 @@ rap.northbound.interface.REST=true
 rap.northbound.interface.OData=true
 rap.northbound.interface.WebSocket=true
 
-ssp.id=SSP_ICOM
+ssp.id=SSP_UNIDATA
 rap.security.enabled=false
 symbIoTe.aam.integration=false
 innk.core.enabled=false 
-innk.lwsp.enabled=false
+innk.lwsp.enabled=true
 
 #symbIoTe.core.interface.url=https://symbiote-open.man.poznan.pl:8100/coreInterface/v1
-symbIoTe.core.interface.url=https://symbiote-core.intracom-telecom.com/coreInterface
-symbIoTe.cloud.interface.url=https://symbiote-core.intracom-telecom.com/cloudCoreInterface
+symbIoTe.core.interface.url=https://symbiote-dev.man.poznan.pl:8100/coreInterface/v1
+symbIoTe.cloud.interface.url=https://symbiote-dev.man.poznan.pl/cloudCoreInterface
 
 
 
-symbIoTe.localaam.url=http://symbiote-aam:8443
+symbIoTe.localaam.url=http://localhost:8443
 symbIoTe.validation.localaam=true
 
 #Notification CRAM
-symbiote.rap.cram.url=https://symbiote-core.intracom-telecom.com/cloudCoreInterface/accessNotifications
-#symbiote.rap.cram.url=https://symbiote-open.man.poznan.pl:8101/cloudCoreInterface/v1/accessNotifications
+symbiote.rap.cram.url=https://symbiote-open.man.poznan.pl:8101/cloudCoreInterface/v1/accessNotifications
 
 # requested json property name from plugin response
 rap.json.property.type = @type 
@@ -48,8 +47,8 @@ rap.json.property.type = @type
 ##############################################################################
 
 # The credentials of the Platform Owner account in the PAAM
-symbIoTe.component.username=icom
-symbIoTe.component.password=icom
+symbIoTe.component.username=loc_sspunidata
+symbIoTe.component.password=loc_sspunidata123
 
 # Keystore configuration
 symbIoTe.component.keystore.path=keystore.jks

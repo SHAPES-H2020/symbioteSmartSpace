@@ -1,0 +1,52 @@
+The SmartSpaceMiddleware-3.0.0-modified.jar is based on SmartSpaceMiddleware-3.0.0.jar
+Changes:
+18-11-2021
+-----------------------------------
+In the resources folder the folowing .owl files replaced from the .owl files of ResourceAccessProxy project.
+
+bim.owl
+core-v0.6.owl
+core-v1.0.owl
+meta-v0.3.owl
+pim.owl
+pim_partial.owl
+time.owl
+
+
+14-01-2022
+---------------------
+1)To build a new SmartSpaceMiddleware-3.0.0.jar , run inside this folder C:\projects\SHAPES\SSP\develop\opt\symbiote\SymbioteSmartSpace-modified
+> gradle build, the gradle is not the Gradle.bat of this folder
+
+2) In application.properties I set:
+   - innk.lwsp.enabled=false
+   - symbIoTe.core.interface.url=https://symbiote-core.intracom-telecom.com/coreInterface
+   - symbIoTe.core.cloud.interface.url=https://symbiote-core.intracom-telecom.com/cloudCoreInterface  ##The /cloudCoreInterface exists both in cloud and core.Both redirect to Core
+   - symbIoTe.localaam.url=http://symbiote-aam:8443
+
+3) TODO Must be checked the setup in application.properties:
+   - innkeeper.tag.connected_to=SSP MY SSP NAME ???
+   - innkeeper.tag.service_url=http://my.ssp.name.org ???
+   - ssp.location_name=UNIDATA SSP ROME ??? TODO
+
+
+03-02-2022
+-----------------------
+1)The application.properties changed because caused Java debug outputs.
+2)The sendTo199.bat sends now the .jar to /toCreateImage folder.
+3)The smartspaceproperties in docker-compose-swarm-L3.bat are now in comments.Must be uncommented.
+4)The .xGradle.bat used for build. I must check the gradle assemble --refresh-dependencies.
+5)The SmartSpaceMiddleware shows debugs for owl. Check the Java options in docker-compose-swarm-L2.yml.
+
+09-02-2022
+--------------------------------------------------
+1)In AuthorizationService.java,getHttpHeadersWithSecurityRequest() methods added debug for security headers.
+
+
+
+15-02-2021
+--------------------------------------------------
+1)In WebSocketAPI.java added 
+public static String getMessageWithHomeToken(String command,String resourceId) throws Exception{
+ 
+ 

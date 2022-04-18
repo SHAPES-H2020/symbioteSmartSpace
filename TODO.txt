@@ -1,0 +1,43 @@
+1) In case we use the original AAM then in application.properties:
+the line symbIoTe.localaam.url=http://symbiote-aam:8443 must be replaced with
+symbIoTe.localaam.url=http://symbiote-aam:8080
+The same in bootstrap.properties of AAM, nginx-prod.conf and docker compose file.
+2) rap.mongo.dbname = resources_db ?? in application.properties
+
+3) Check in application.properties the validation of:
+rap.security.enabled=false
+symbIoTe.aam.integration=false
+innk.core.enabled=false 
+innk.lwsp.enabled=false
+
+4)The symbIoTe.cloud.interface.url=https://symbiote-cloud.intracom-telecom.com/cloudCoreInterface is valid???
+  I added the:
+symbIoTe.core.cloud.interface.url=https://symbiote-core.intracom-telecom.com/cloudCoreInterface
+
+5)Check the following set up in application.properties.
+
+innkeeper.tag.connected_to=SSP MY SSP NAME
+innkeeper.tag.service_url=http://my.ssp.name.org
+ssp.location_name=UNIDATA SSP ROME
+symbIoTe.component.clientId=innkeeper@${ssp.id}
+ssp.url=217.72.97.9
+longitude=13.353738
+latitude=38.108476
+altitude=6
+
+
+3-02-2022
+------------------
+1)Find why the application.properties in the smartspaceproperties cause the debug outputs.
+  Use the application.properties of /resources folder of SmartSpaceModified project.
+2)Add the certificates and the domain name.
+3)Check connection beetween VM 199 and VM187.
+4)The .xGradle.bat used for build. I must check the gradle assemble --refresh-dependencies.
+5)The SmartSpaceMiddleware shows debugs for owl. Check the Java options in docker-compose-swarm-L2.yml.
+
+ 
+ 
+
+
+
+

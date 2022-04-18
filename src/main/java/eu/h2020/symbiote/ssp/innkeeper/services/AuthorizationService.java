@@ -56,6 +56,7 @@ public class AuthorizationService {
                                 @Value("${symbIoTe.component.keystore.password}") String keystorePass,
                                 @Value("${symbIoTe.aam.integration}") Boolean securityEnabled)
             throws SecurityHandlerException {
+         /////////////////////////////// DEBUG ///////////////////////////////////////////////////////////////
 
         Assert.notNull(sspId,"sspId can not be null!");
         this.sspId = sspId;
@@ -81,6 +82,7 @@ public class AuthorizationService {
         Assert.notNull(securityEnabled,"securityEnabled can not be null!");
         this.securityEnabled = securityEnabled;
 
+        System.out.println("Checking if security is enabled");
         if (securityEnabled)
             enableSecurity();
     }
@@ -171,9 +173,16 @@ public class AuthorizationService {
         if (securityEnabled) {
             try {
                 SecurityRequest securityRequest = componentSecurityHandler.generateSecurityRequestUsingLocalCredentials();
+                /////////////////////// DEBUG //////////////////////
+                System.out.println("securityRequest.getTimestamp() = " + securityRequest.getTimestamp());
+                System.out.println("securityRequest.getProprietarySecurityPayload() = " + securityRequest.getProprietarySecurityPayload());
+
+
                 for (Map.Entry<String, String> entry : securityRequest.getSecurityRequestHeaderParams().entrySet()) {
                     httpHeaders.add(entry.getKey(), entry.getValue());
+                    System.out.println(entry.getKey() + "  = " + entry.getValue());
                 }
+                ///////////////////////////////////////////////////
 
             } catch (SecurityHandlerException | JsonProcessingException e) {
                 log.info("Could not create security request", e);
@@ -221,6 +230,17 @@ public class AuthorizationService {
      */
     private void enableSecurity() throws SecurityHandlerException {
         securityEnabled = true;
+        System.out.println("Security is enabled");
+        System.out.println("enableSecurity() starts");
+
+        System.out.println("keystoreName = " + keystoreName);
+
+        System.out.println("clientId = " + clientId);
+        System.out.println("aamAddress = " + aamAddress);
+
+        System.out.println("componentOwnerName = " + componentOwnerName);
+        System.out.println("componentOwnerPassword = " + componentOwnerPassword);
+
         componentSecurityHandler = ComponentSecurityHandlerFactory.getComponentSecurityHandler(
                 keystoreName,
                 keystorePass,
@@ -228,6 +248,8 @@ public class AuthorizationService {
                 aamAddress,
                 componentOwnerName,
                 componentOwnerPassword);
+
+        System.out.println("enableSecurity() ends");
 
     }
 

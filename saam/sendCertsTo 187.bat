@@ -1,0 +1,1 @@
+ C:\projects\SHAPES\rapplugin-external\pscp -P 22 -pw Sh@p3s187 "C:\projects\SHAPES\SSP\develop\opt\symbiote\SymbioteSmartSpace\saam\cert.properties" shapes@146.124.106.187:/home/shapes/mxar/rapplugin/01-10-2021

@@ -1,0 +1,1 @@
+ C:\GRADLE\Gradle-4.9-bin\gradle-4.9\bin\gradle.bat assemble --refresh-dependencies

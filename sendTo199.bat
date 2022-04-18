@@ -1,0 +1,1 @@
+ C:\projects\SHAPES\rapplugin-external\pscp -P 22 -pw Sh@p3s199 "C:\projects\SHAPES\SSP\develop\opt\symbiote\SymbioteSmartSpace-modified\build\libs\SmartSpaceMiddleware-3.0.0.jar" shapes@146.124.106.199:/home/shapes/shapes-l3/opt/symbiote/SymbioteSmartSpace/toCreateImage

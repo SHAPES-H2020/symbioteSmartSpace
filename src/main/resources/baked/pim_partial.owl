@@ -14,7 +14,6 @@
 @prefix bim-sr: <http://www.symbiote-h2020.eu/ontology/bim/smartresidence#> .
 @prefix bim-ss: <http://www.symbiote-h2020.eu/ontology/bim/smartstadium#> .
 @prefix bim-sy: <http://www.symbiote-h2020.eu/ontology/bim/smartyachting#> .
-@prefix shapes1: <http://www.symbiote-h2020.eu/ontology/bim/shapes1#> .
 @prefix qu-dim: <http://purl.oclc.org/NET/ssnx/qu/dim#> .
 @prefix qu-unit: <http://purl.oclc.org/NET/ssnx/qu/unit#> .
 @prefix property: <http://www.symbiote-h2020.eu/ontology/bim/property#> .
