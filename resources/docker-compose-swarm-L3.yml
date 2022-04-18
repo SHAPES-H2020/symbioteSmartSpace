@@ -1,0 +1,76 @@
+
+version: "3.5"
+
+x-environment:
+  &default-environment
+    - JAVA_HTTP_PROXY=-Dhttp.proxyHost=146.124.225.18 -Dhttp.proxyPort=3128
+    - JAVA_HTTPS_PROXY=-Dhttps.proxyHost=146.124.225.18 -Dhttps.proxyPort=3128 
+    ##- JAVA_SOCKS_PROXY=-DsocksProxyHost=146.124.225.18 -DsocksProxyPort=3128
+    - JAVA_NON_PROXY_HOSTS=-Dhttp.nonProxyHosts=*symbiote-h2020.eu|*intracom-telecom.com|symbiote-cloudconfig|symbiote-aam|symbiote-smart-space
+    # - _JAVA_OPTIONS=$JAVA_NON_PROXY_HOSTS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1
+    - _JAVA_OPTIONS=-Dhttps.proxyHost=146.124.225.18 -Dhttps.proxyPort=3128 $JAVA_NON_PROXY_HOSTS -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:MaxRAMFraction=1   
+
+
+services:
+  #curl_client:
+   #image: curlimages/curl:7.81.0
+   
+
+  symbiote-mongo:
+    image: mongo:3.6
+    networks:
+      - symbioteL3
+    volumes:
+      - symbiote-vol:/data/db
+  symbiote-aam:
+    environment: *default-environment
+    #image: ssp_aam_new
+    image: symbioteh2020/symbiote-aam:5.0.12
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+    networks:
+      - symbioteL3
+    ports:
+      - 8080:8080
+      #- 9090:8443
+      # was - 8443:8443 
+    secrets:
+      - source: aambootstrapconfig
+        target: /home/bootstrap.properties
+      - source: aamcertconfig
+        target: /home/cert.properties
+  symbiote-smart-space:
+    environment: *default-environment
+    image: smart_space_middleware
+    depends_on:
+     - symbiote-aam
+    deploy:
+      resources:
+       limits:
+         memory: 600M
+    networks:
+     - symbioteL3
+    ports:
+     - 8081:8081
+    secrets:
+     - source: smartspaceproperties
+       target: /home/application.properties
+ 
+networks:
+  symbioteL3:
+    name: symbioteL3
+volumes:
+  symbiote-vol:
+  symbiote-vol-config:
+secrets:
+  smartspaceproperties:
+   file: ./SmartSpaceMiddleware/application.properties
+  aambootstrapconfig:
+   file: ./AuthenticationAuthorizationManager/bootstrap.properties
+  aamcertconfig:
+   file: ./AuthenticationAuthorizationManager/cert.properties
+  #rapbootstrapconfig:
+  #  file: ./ResourceAccessProxy/bootstrap.properties
+
